@@ -2,12 +2,10 @@ package com.imooc.animation360.engine;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.imooc.animation360.view.FloatCirecleView;
 import com.imooc.animation360.view.FloatMenuView;
@@ -122,24 +120,23 @@ public class FloatViewManager {
 
     /**
      * 获取当前状态栏的高度
+     * 主要原理是从系统R文件中找到dimen这个内部类，然后通过反射拿到dimen中的status_bar_height的值，这个值其实就是资源id，
+     * 然后再通过getResource方法拿到该id对应的值，真所谓天衣无缝，无可挑剔！ 此方法应该也适用于其他系统字段的值。
      *
-     * @return
+     * @return 状态栏高度
      */
     public int getStatusHeight() {
-
+        int sbar = 0;
         try {
-            Class<?> c = Class.forName("com,android,internal.R$dimen");
+            Class<?> c = Class.forName("com.android.internal.R$dimen");
             Object o = c.newInstance();
-            Field file = c.getField("status_bar_height");
-            int x = (Integer) file.get(o);
-            Log.i(TAG, "getStatusHeight: x=" + x);
-            return context.getResources().getDimensionPixelSize(x);
-
+            Field field = c.getField("status_bar_height");
+            int x = (Integer) field.get(o);
+            sbar = context.getResources().getDimensionPixelSize(x);
         } catch (Exception e) {
-            return 0;
+            e.printStackTrace();
         }
-
-
+        return sbar;
     }
 
 
@@ -203,19 +200,19 @@ public class FloatViewManager {
      * 展示浮窗小球到窗口上
      */
     public void showFloatCircleView() {
-            if(null == params) {
-                params = new WindowManager.LayoutParams();
-                params.width = floatCirecleView.width;
-                params.height = floatCirecleView.height;
-                //设置显示位置在左上偏移的位置
-                params.gravity = Gravity.TOP | Gravity.LEFT;
-                params.x = 0;
-                params.y = 0;
-                params.type = WindowManager.LayoutParams.TYPE_PHONE; //这样设置之后我们的浮动窗会一直显示在手机的上面
-                params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE; //让浮窗球不与其他的应用抢焦点
-                params.format = PixelFormat.RGB_888;
+        if (null == params) {
+            params = new WindowManager.LayoutParams();
+            params.width = floatCirecleView.width;
+            params.height = floatCirecleView.height;
+            //设置显示位置在左上偏移的位置
+            params.gravity = Gravity.TOP | Gravity.LEFT;
+            params.x = 0;
+            params.y = 0;
+            params.type = WindowManager.LayoutParams.TYPE_PHONE; //这样设置之后我们的浮动窗会一直显示在手机的上面
+            params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE; //让浮窗球不与其他的应用抢焦点
+            params.format = PixelFormat.RGB_888;
 
-            }
+        }
 
         windowManager.addView(floatCirecleView, params);
 
