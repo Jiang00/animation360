@@ -1,0 +1,1 @@
+include ':myapplication2', ':recyclerView', ':mytopbar', ':myCamera', ':myapplication3', ':appShare', ':myapplication4', ':myapplication5', ':LearnFragment', ':LearnLayout', ':learnrv', ':learncomponents', ':imooc_progressbar', ':mylibrary', ':pintudemo', ':library', ':app', ':animation360'

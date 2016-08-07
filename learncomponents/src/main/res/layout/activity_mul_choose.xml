@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.learncomponents.MulChoose"
+
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="你喜欢吃哪些食物?"
+        />
+
+       <CheckBox
+           android:layout_marginTop="20dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="肉夹馍"
+           android:id="@+id/cb1"
+           />
+
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="红烧肉"
+        android:id="@+id/cb3"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="火龙果"
+        android:id="@+id/cb4"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="苹果 "
+        android:id="@+id/cb2"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/tvResult"
+        android:layout_gravity="center_horizontal"
+        android:textSize="16sp"
+
+        />
+
+
+</LinearLayout>
